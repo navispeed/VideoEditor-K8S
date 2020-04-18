@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-sql
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: pg-sql
+      labels:
+        app: spring-api
+    spec:
+      containers:
+        - name: pg-sql
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: postgres_password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: hostname-config
+                  key: postgres_host
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: postgres_database
+          image: localhost:32000/video-editor
+  selector:
+    matchLabels:
+      app: spring-api
