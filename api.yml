@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pg-sql
+  name: editor-api
   namespace: default
 spec:
   replicas: 1
   template:
     metadata:
-      name: pg-sql
+      name: editor-api
       labels:
         app: spring-api
     spec:
       containers:
-        - name: pg-sql
+        - name: editor-api
           env:
             - name: POSTGRES_USER
               valueFrom:
