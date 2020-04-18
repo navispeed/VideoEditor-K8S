@@ -14,7 +14,7 @@ spec:
       containers:
         - name: editor-api
           env:
-            - name: POSTGRES_USER
+            - name: POSTGRES_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
