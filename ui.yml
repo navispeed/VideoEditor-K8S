@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: editor-ui
+  namespace: default
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      name: editor-ui
+      labels:
+        app: spring-ui
+    spec:
+      containers:
+        - name: editor-ui
+          image: localhost:32000/video-editor-ui:master-3
+          ports:
+            - containerPort: 8080
+  selector:
+    matchLabels:
+      app: spring-ui
