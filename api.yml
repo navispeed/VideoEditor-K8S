@@ -35,6 +35,9 @@ spec:
                   name: postgres-config
                   key: postgres_database
           image: localhost:32000/video-editor
+          ports:
+            - containerPort: 8080
+
   selector:
     matchLabels:
       app: spring-api
