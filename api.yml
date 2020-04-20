@@ -34,7 +34,7 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres_database
-          image: localhost:32000/video-editor:master-57
+          image: localhost:32000/video-editor:master-58
           ports:
             - containerPort: 8080
   selector:
