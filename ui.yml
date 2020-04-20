@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: editor-ui
-          image: localhost:32000/video-editor-ui:master-5
+          image: localhost:32000/video-editor-ui:master-7
           ports:
             - containerPort: 8080
   selector:
