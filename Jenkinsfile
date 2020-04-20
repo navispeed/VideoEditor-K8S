@@ -1,15 +1,35 @@
 pipeline {
   agent any
   stages {
+
+
     stage('Update API') {
       steps {
-        sh 'microk8s.kubectl apply -f api.yml'
+        withEnv(["API_TAG=${params.API}"]) {
+          sh '''
+           if [ "${API_TAG}" != "" ]
+           then
+              cat api.yml | sed -r 's/master-[0-9]+/master-${API-TAG}/g' | microk8s.kubectl apply -f-
+           else
+              microk8s.kubectl apply -f api.yml           
+           fi
+           '''
+        }
       }
     }
 
     stage('Update UI') {
       steps {
-        sh 'microk8s.kubectl apply -f ui.yml'
+        withEnv(["UI_TAG=${params.UI}]"]) {
+          sh '''
+           if [ "${UI_TAG}" != "" ]
+           then
+              cat ui.yml | sed -r 's/master-[0-9]+/master-${UI-TAG}/g' | microk8s.kubectl apply -f-
+           else
+              microk8s.kubectl apply -f ui.yml           
+           fi
+           '''
+        }
       }
     }
   }
