@@ -9,9 +9,7 @@ pipeline {
           sh '''
            if [[ "${API_TAG}" == master-* ]]
            then
-              cat api.yml | sed -r "s/master-[0-9]+/${API_TAG}/g" | microk8s.kubectl apply -f-
-           else
-              microk8s.kubectl apply -f api.yml           
+              cat api.yml | sed -r "s/master-[0-9]+/${API_TAG}/g" | microk8s.kubectl apply -f-     
            fi
            '''
         }
@@ -25,8 +23,6 @@ pipeline {
            if [[ "${UI_TAG}" == master-* ]]
            then
               cat ui.yml | sed -r "s/master-[0-9]+/${UI_TAG}/g" | microk8s.kubectl apply -f-
-           else
-              microk8s.kubectl apply -f ui.yml           
            fi
            '''
         }
