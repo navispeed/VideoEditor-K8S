@@ -1,15 +1,13 @@
 pipeline {
   agent any
   stages {
-
-
     stage('Update API') {
       steps {
         withEnv(["API_TAG=${params.API}"]) {
           sh '''
            if [[ "${API_TAG}" == master-* ]]
            then
-              cat api.yml | sed -r "s/master-[0-9]+/${API_TAG}/g" | microk8s.kubectl apply -f-     
+              microk8s.helm3 upgrade editor-api api/ --set-string image.tag=${API_TAG}
            fi
            '''
         }
@@ -22,7 +20,7 @@ pipeline {
           sh '''
            if [[ "${UI_TAG}" == master-* ]]
            then
-              cat ui.yml | sed -r "s/master-[0-9]+/${UI_TAG}/g" | microk8s.kubectl apply -f-
+              microk8s.helm3 upgrade editor-ui ui/ --set-string image.tag=${UI_TAG}
            fi
            '''
         }

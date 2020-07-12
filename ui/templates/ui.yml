@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: editor-ui
-          image: localhost:32000/video-editor-ui:master-7
+          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8080
   selector:
