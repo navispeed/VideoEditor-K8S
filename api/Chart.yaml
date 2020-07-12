@@ -1,0 +1,11 @@
+apiVersion: v1
+appVersion: "3.9"
+description: Deploy a video editor api
+home: https://helm.sh/helm
+maintainers:
+  - email: gregoire.guemas@navispeed,eu
+    name: Grégoire GUEMAS
+name: api
+sources:
+  - https://github.com/navispeed/VideoEditor-K8S
+version: 0.1.0

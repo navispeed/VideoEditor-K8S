@@ -1,0 +1,4 @@
+image:
+  repository: localhost:32000
+  name: video-editor
+  tag: master-58

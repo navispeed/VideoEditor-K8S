@@ -34,7 +34,7 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres_database
-          image: localhost:32000/video-editor:master-58
+          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8080
   selector:
